@@ -41,9 +41,9 @@ func main() {
 		if req == "eat" {
 			fmt.Println(animalMap[animal].Eat())
 		} else if req == "move" {
-			fmt.Println(animalMap[animal].Speak())
-		} else if req == "speak" {
 			fmt.Println(animalMap[animal].Move())
+		} else if req == "speak" {
+			fmt.Println(animalMap[animal].Speak())
 		} else {
 			fmt.Println("Invalid input")
 		}
