@@ -33,18 +33,17 @@ func (p Philo) eat(c chan *Philo, wg *sync.WaitGroup) {
 
 	for i := 0; i < 3; i++ {
 		c <- &p
-		if p.count < 3 {
-			p.leftCStick.Lock()
-			p.rightCStick.Lock()
+		p.leftCStick.Lock()
+		p.rightCStick.Lock()
 
-			fmt.Println("starting to eat", p.id)
-			p.count++
-			fmt.Println("finishing eating", p.id)
+		fmt.Println("starting to eat", p.id)
+		p.count++
+		fmt.Println("finishing eating", p.id)
 
-			p.leftCStick.Unlock()
-			p.rightCStick.Unlock()
-			wg.Done()
-		}
+		p.leftCStick.Unlock()
+		p.rightCStick.Unlock()
+		wg.Done()
+
 	}
 
 }
@@ -63,7 +62,6 @@ func main() {
 	var wg sync.WaitGroup
 	c := make(chan *Philo, 2)
 
-
 	cSticks := make([]*CStick, 5)
 	for i := 0; i < 5; i++ {
 		cSticks[i] = new(CStick)
@@ -74,8 +72,8 @@ func main() {
 		philos[i] = &Philo{
 			leftCStick:  cSticks[i],
 			rightCStick: cSticks[(i+1)%5],
-			id: i+1,
-			count: 0,
+			id:          i + 1,
+			count:       0,
 		}
 	}
 
