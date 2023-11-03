@@ -63,7 +63,6 @@ func main() {
 	var wg sync.WaitGroup
 	c := make(chan *Philo, 2)
 
-	wg.Add(15)
 
 	cSticks := make([]*CStick, 5)
 	for i := 0; i < 5; i++ {
@@ -80,6 +79,7 @@ func main() {
 		}
 	}
 
+	wg.Add(15)
 	go host(c, &wg)
 	for i := 0; i < 5; i++ {
 		go philos[i].eat(c, &wg)
